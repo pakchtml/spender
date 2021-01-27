@@ -35,10 +35,9 @@ const Form = () => {
    return (
       <Wrap>
          <form onSubmit={createTrans}>
-
             <div className="form-data">
                <label htmlFor="form-type">Type</label>
-               <select id="form-type" value={formData.type} onChange={e => formDataSet({...formData, type: e.target.value})}>
+               <select required id="form-type" value={formData.type} onChange={e => formDataSet({...formData, type: e.target.value})}>
                   <option value="Income">Income</option>
                   <option value="Expense">Expense</option>
                </select>
@@ -46,7 +45,7 @@ const Form = () => {
 
             <div className="form-data">
                <label htmlFor="form-category">Category</label>
-               <select id="form-category" value={formData.category} onChange={e => formDataSet({...formData, category: e.target.value})}>
+               <select required id="form-category" value={formData.category} onChange={e => formDataSet({...formData, category: e.target.value})}>
                   {
                      selectedCat.map(c => <option value={c.type} key={c.type}>{c.type}</option>)
                   }
@@ -55,13 +54,13 @@ const Form = () => {
 
             <div className="form-data">
                <label htmlFor="form-amount">Amount</label>
-               <input type="number" id="form-amount" value={formData.amount} onChange={e => formDataSet({...formData, amount: e.target.value})} />
+               <input required type="number" id="form-amount" value={formData.amount} onChange={e => formDataSet({...formData, amount: e.target.value})} />
             </div>
 
             <div className="form-data">
                <label htmlFor="form-date">Date</label>
                {/* <input type="date" id="form-date" value={formData.date} onChange={e => formDataSet({...formData, date: formatDate(e.target.value)})} /> */}
-               <input type="date" id="form-date" value={formData.date} onChange={e => formDataSet({...formData, date: e.target.value})} />
+               <input required type="date" id="form-date" value={formData.date} onChange={e => formDataSet({...formData, date: e.target.value})} />
             </div>
 
             {/* <div className="speechly-text">
@@ -79,5 +78,31 @@ const Form = () => {
 }
 const Wrap = styled.div`
 .btn-create{width:100%;}
+form{
+   display:grid; grid-template-columns:1fr 1fr;
+   grid-column-gap:2rem; grid-row-gap:1rem;
+   @media(max-width:759px){grid-template-columns:1fr;}
+   .form-data{
+      display:grid; grid-template-columns:1fr 4fr;
+      select, & input{
+         padding:3px 5px;
+         font-size:1rem;
+         border:none; outline:none;
+         border-radius:7px;
+         &:focus{
+            background-color:rgb(235,235,235);
+         }
+      }
+   }
+   .btn-create{
+      grid-column:1 / 3;
+      border:none; outline:none;
+      background-color:#3a78b3; color:white; border-radius:7px;
+      padding:5px;
+      font-size:1.35rem; letter-spacing:2px;
+      text-transform:uppercase;
+      @media(max-width:759px){grid-column:unset;}
+   }
+}
 `;
 export default Form

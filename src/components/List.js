@@ -6,12 +6,6 @@ import {SpenderContext} from '../context/context'
 const List = () => {
    const {transactions, deleteTransaction} = useContext(SpenderContext);
 
-   // const transactions = [
-   //    {id:0, type:'Income', category:'Business', amount:20, date:'wed jan 11'},
-   //    {id:1, type:'Income', category:'Salary', amount:200, date:'tues jan 10'},
-   //    {id:2, type:'Expense', category:'Food', amount:10, date:'Sun jan 8'},
-   // ];
-
    return (
       <Wrap>
          <ul className="transactions">
@@ -19,9 +13,11 @@ const List = () => {
                transactions.map(t => (
                   <li key={t.id} className={t.type === 'Income' ? 'transaction income' : 'transaction expense'}>
                      <p>{t.category}</p>
-                     <p>{t.date}</p>
-                     <p>${t.amount}</p>
-                     <FaTrash className="icon-delete" onClick={() => deleteTransaction(t.id)} />
+                     <p className="date">{t.date}</p>
+                     <p className="amt">${t.amount}</p>
+                     <span>
+                        <FaTrash className="icon-delete" onClick={() => deleteTransaction(t.id)} />
+                     </span>
                   </li>
                ))
             }
@@ -31,11 +27,25 @@ const List = () => {
 }
 const Wrap = styled.div`
 .transactions{
+   height:200px; overflow-y:auto;
    .transaction{
-      &.income{background-color:dodgerblue;}
-      &.expense{background-color:orange;}
-      display:grid; grid-template-columns:repeat(3,2fr) 1fr;
+      padding:5px 5px 2px 5px;
+      display:grid; grid-template-columns:3fr 3fr 2fr 1fr;
+      border-radius:7px;
+      p{
+         &.date{text-align:center;}
+         &.amt{text-align:center;}
+      }
+      span{text-align:right; cursor:pointer;}
+      &.income{background-color:#289443; color:white;}
+      &.expense{background-color:#f18f8f;}
+      :not(:first-of-type){
+         margin-top:10px;
+         @media(max-width:419px){margin-top:14px;}
+      }
+      @media(max-width:419px){font-size:.9rem;}
    }
+   &::-webkit-scrollbar{display:none;}
 }
 `;
 export default List

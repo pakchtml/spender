@@ -8,7 +8,7 @@ const useTransactions = (title) => {
    const transType = transactions.filter(t => t.type === title);
    const total = transType.reduce((acc,curr) => acc += curr.amount, 0);
    const categories = title === 'Income' ? incomeCategories : expenseCategories;
-   console.log({transType, total, categories});
+   // console.log({transType, total, categories});
    transType.forEach(t => {
       const category = categories.find(c => c.type === t.category);
       if(category) category.amount += t.amount;

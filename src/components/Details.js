@@ -17,6 +17,11 @@ const Details = ({title}) => {
    )
 }
 const Wrap = styled.div`
+background-color:white;
 text-align:center;
+padding:2rem 0;
+border-radius:7px;
+h3{font-size:1.5rem;margin-bottom:.3rem;}
+h5{font-size:1.5rem;}
 `;
 export default Details

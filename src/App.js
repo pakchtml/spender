@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import GS from './assets/Globalstyles'
+import styled from 'styled-components'
+import Details from './components/Details'
+import Main from './components/Main'
+// import {PushToTalkButton,PushToTalkButtonContainer,ErrorPanel} from '@speechly/react-ui'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+   return (
+      <Wrap>
+         <h1>spender</h1>
+
+         <div className="wrap-details">
+            <Details title="Income" />
+            <Details title="Expense" />
+         </div>
+
+         <div className="wrap-main">
+            <Main/>
+         </div>
+
+         {/* <PushToTalkButtonContainer>
+            <PushToTalkButton/>
+            <ErrorPanel/>
+         </PushToTalkButtonContainer> */}
+         <GS/>
+      </Wrap>
+   )
 }
-
-export default App;
+const Wrap = styled.div`
+.wrap-{
+   &details{
+      display:grid; grid-template-columns:1fr 1fr; grid-gap:1rem;
+   }
+}
+`;
+export default App

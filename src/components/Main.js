@@ -9,7 +9,7 @@ const Main = () => {
    return (
       <Wrap>
          <div className="card">
-            <h4>Total Balance: ${balance}</h4>
+            <h4>Total Balance: ${balance.toFixed(2)}</h4>
             {/* <p>--demo phrase--</p> */}
 
             <div className="card-content form">

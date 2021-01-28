@@ -10,7 +10,7 @@ const Details = ({title}) => {
       <Wrap>
          <h3>{title}</h3>
          <div className="card">
-            <h5>${total}</h5>
+            <h5>${total.toFixed(2)}</h5>
             <Doughnut data={chartData}/>
          </div>
       </Wrap>
